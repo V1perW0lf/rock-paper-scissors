@@ -5,22 +5,22 @@ function getComputerChoice() {
 
 function playOneRound(playerSelection, computerSelection) {
     if(playerSelection == computerSelection) {
-        return [`This round is a tie!`, 0]
+        return [`This round is a tie!`, 0];
     } else if (playerSelection == "Rock" && computerSelection == "Paper" || 
                playerSelection == "Paper" && computerSelection == "Scissors" ||
                playerSelection == "Scissors" && computerSelection == "Rock") {
-        return [`You lose! ${computerSelection} beats ${playerSelection}!`, -1]
+        return [`You lose! ${computerSelection} beats ${playerSelection}!`, -1];
     } else {
-        return [`You Win! ${playerSelection} beats ${computerSelection}!`, 1]
+        return [`You Win! ${playerSelection} beats ${computerSelection}!`, 1];
     }
 }
 
 function game() {
     let score = 0;
     for (let i = 0; i < 5; i++) {
-        let input = prompt("What is your selection?", "")
+        let input = prompt("What is your selection?", "");
         let selection = input.charAt(0).toUpperCase() + input.slice(1);
-        let result = playOneRound(selection, getComputerChoice())
+        let result = playOneRound(selection, getComputerChoice());
         score += result[1];
         console.log(result[0]);
     }
