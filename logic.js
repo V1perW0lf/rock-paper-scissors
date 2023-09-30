@@ -1,6 +1,6 @@
 function getComputerChoice() {
-    const computer_choices = ["Rock", "Paper", "Scissors"];
-    return computer_choices[Math.floor(Math.random() * 3)];
+    const computerChoices = ["Rock", "Paper", "Scissors"];
+    return computerChoices[Math.floor(Math.random() * 3)];
 }
 
 function playOneRound(playerSelection, computerSelection) {
