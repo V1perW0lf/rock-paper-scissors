@@ -1,34 +1,60 @@
+let playerScore = 0;
+let computerScore = 0;
+const displayResult = document.getElementById("result");
+
+const playButtons = document.querySelectorAll("button.play-btn");
+playButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playerSelection = button.innerText;
+        playOneRound(playerSelection, getComputerChoice());
+    })
+})
+
+const resetButton = document.getElementById("reset");
+resetButton.addEventListener('click', resetGame);
+
 function getComputerChoice() {
     const COMPUTER_CHOICES = ["Rock", "Paper", "Scissors"];
     return COMPUTER_CHOICES[Math.floor(Math.random() * 3)];
 }
 
 function playOneRound(playerSelection, computerSelection) {
-    if(playerSelection == computerSelection) {
-        return [`This round is a tie!`, 0];
-    } else if (playerSelection == "Rock" && computerSelection == "Paper" || 
-               playerSelection == "Paper" && computerSelection == "Scissors" ||
-               playerSelection == "Scissors" && computerSelection == "Rock") {
-        return [`You lose! ${computerSelection} beats ${playerSelection}!`, -1];
+    if (playerSelection == computerSelection) {
+        displayResult.innerText = "This is a tie!";
+    } else if (playerSelection == "Rock" && computerSelection == "Paper" ||
+        playerSelection == "Paper" && computerSelection == "Scissors" ||
+        playerSelection == "Scissors" && computerSelection == "Rock") {
+        displayResult.innerText = `You lose! ${computerSelection} beats ${playerSelection}!`;
+        computerScore++;
     } else {
-        return [`You Win! ${playerSelection} beats ${computerSelection}!`, 1];
+        displayResult.innerText = `You Win! ${playerSelection} beats ${computerSelection}!`;
+        playerScore++;
+    }
+    checkForWinner();
+}
+
+function checkForWinner() {
+    if (playerScore > 4) {
+        displayResult.innerText = "You Win!";
+        endGame();
+    } else if (computerScore > 4) {
+        displayResult.innerText = "You Lose!";
+        endGame();
+    }
+    function endGame() {
+        resetButton.hidden = false;
+        playButtons.forEach((button) => {
+            button.disabled = true;
+        });
     }
 }
 
-function game() {
-    let score = 0;
-    for (let i = 0; i < 5; i++) {
-        let input = prompt("What is your selection?", "");
-        let selection = input.charAt(0).toUpperCase() + input.slice(1);
-        let result = playOneRound(selection, getComputerChoice());
-        score += result[1];
-        console.log(result[0]);
-    }
-    if(score > 0) {
-        console.log("You win!");
-    } else if (score == 0) {
-        console.log("It's a tie!");
-    } else {
-        console.log("You lose!");
-    }
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    resetButton.hidden = true;
+    displayResult.innerText = '';
+    playButtons.forEach((button) => {
+        button.disabled = false;
+    });
 }

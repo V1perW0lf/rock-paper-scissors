@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="./style.css"></link>
-    <script src="./logic.js"></script>
+    <script src="./logic.js" defer></script>
 </head>
 <body>
-    
+    <div class="play-button-container">
+        <button class="play-btn" id="rock-btn">Rock</button>
+        <button class="play-btn" id="paper-btn">Paper</button>
+        <button class="play-btn" id="scissors-btn">Scissors</button>
+    </div>
+    <div id="result"></div>
+    <button id="reset" hidden="true">Reset</button>
 </body>
 </html>
