@@ -1,3 +1,24 @@
 * {
     background-color: rgb(88, 88, 88);
+    /* border: 1px red solid; */
+}
+
+h1, button {
+    text-align: center;
+}
+
+.play-button-container, div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 32px;
+}
+
+.scores {
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    margin: 0;
 }

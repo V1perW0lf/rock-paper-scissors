@@ -1,6 +1,8 @@
 let playerScore = 0;
 let computerScore = 0;
 const displayResult = document.getElementById("result");
+const playerScoreDisplay = document.querySelector("p.player-score");
+const computerScoreDisplay = document.querySelector("p.computer-score");
 
 const playButtons = document.querySelectorAll("button.play-btn");
 playButtons.forEach((button) => {
@@ -30,6 +32,7 @@ function playOneRound(playerSelection, computerSelection) {
         displayResult.innerText = `You Win! ${playerSelection} beats ${computerSelection}!`;
         playerScore++;
     }
+    updateScores()
     checkForWinner();
 }
 
@@ -49,6 +52,11 @@ function checkForWinner() {
     }
 }
 
+function updateScores() {
+    playerScoreDisplay.innerHTML = `Player Score: ${playerScore}`;
+    computerScoreDisplay.innerHTML = `Computer Score: ${computerScore}`;
+}
+
 function resetGame() {
     playerScore = 0;
     computerScore = 0;
@@ -57,4 +65,5 @@ function resetGame() {
     playButtons.forEach((button) => {
         button.disabled = false;
     });
+    updateScores()
 }
